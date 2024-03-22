@@ -83,7 +83,7 @@ public class MqttMessageInboundHandler implements MessageHandler, InitializingBe
 	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 		Assert.notNull(applicationContext, "applicationContext must not be null");
 		if (CollectionUtils.isEmpty(mqttMessageListenerList)) {
 			return;

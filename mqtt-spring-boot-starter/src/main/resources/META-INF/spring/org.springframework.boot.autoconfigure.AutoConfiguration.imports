@@ -1,0 +1,2 @@
+com.libre.mqtt.config.MqttAutoConfiguration
+com.libre.mqtt.MqttMessageGateWay

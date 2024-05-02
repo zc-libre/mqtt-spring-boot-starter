@@ -1,0 +1,6 @@
+libre:
+  mqtt:
+    consumer:
+      async: false
+    producer:
+      async: true

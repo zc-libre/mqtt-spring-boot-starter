@@ -42,7 +42,7 @@ public class MqttProperties {
 
 	private HostnameVerifier sslHostnameVerifier;
 
-	private Boolean cleanSession = true;
+	private Boolean cleanSession = false;
 
 	private Integer connectionTimeout = 30;
 
@@ -92,6 +92,8 @@ public class MqttProperties {
 		private String clientId;
 
 		private Boolean async = false;
+
+		private Long disconnectCompletionTimeout = ClientManager.DISCONNECT_COMPLETION_TIMEOUT;
 
 		private MqttExecutor executor = new MqttExecutor();
 

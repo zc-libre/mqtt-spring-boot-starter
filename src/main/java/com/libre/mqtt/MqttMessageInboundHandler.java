@@ -42,10 +42,6 @@ public class MqttMessageInboundHandler implements MessageHandler, InitializingBe
 	@ServiceActivator(inputChannel = MqttProperties.MQTT_INPUT_CHANNEL_NAME)
 	public void handleMessage(Message<?> message) throws MessagingException {
 		log.debug("message arrived from server, message: {}", message);
-		doHandlerMessage(message);
-	}
-
-	private void doHandlerMessage(Message<?> message) {
 		MqttMessage mqttMessage = MqttMessage.of(message);
 		for (String topicFilter : mqttMessageListenerContext.keySet()) {
 			try {

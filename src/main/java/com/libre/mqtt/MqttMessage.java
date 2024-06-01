@@ -1,6 +1,5 @@
 package com.libre.mqtt;
 
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.integration.mqtt.support.MqttHeaders;
 import org.springframework.messaging.Message;

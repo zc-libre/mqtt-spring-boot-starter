@@ -2,7 +2,6 @@ package com.libre.mqtt.config;
 
 import com.libre.mqtt.*;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -12,6 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.channel.ExecutorChannel;
+import org.springframework.integration.channel.QueueChannel;
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
@@ -19,15 +19,13 @@ import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import static com.libre.mqtt.MqttProperties.MQTT_INPUT_CHANNEL_NAME;
-import static com.libre.mqtt.MqttProperties.MQTT_OUT_BOUND_CHANNEL_NAME;
+import static com.libre.mqtt.MqttProperties.*;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MqttProperties.class)
@@ -73,6 +71,11 @@ public class MqttAutoConfiguration {
 	}
 
 	@Bean(name = MQTT_OUT_BOUND_CHANNEL_NAME)
+	public MessageChannel consumerChannel() {
+		return new QueueChannel();
+	}
+
+	@Bean(name = CONSUMER_CHANNEL_NAME)
 	public MessageChannel mqttOutboundChannel() {
 		return new DirectChannel();
 	}

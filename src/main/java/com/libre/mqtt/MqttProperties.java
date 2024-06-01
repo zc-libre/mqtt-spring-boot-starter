@@ -20,6 +20,9 @@ public class MqttProperties {
 
 	public final static String MQTT_CONSUMER_EXECUTOR = "mqttConsumerExecutor";
 
+
+	public final static String CONSUMER_CHANNEL_NAME = "consumerChannel";
+
 	private Boolean enabled = true;
 
 	private String[] urls = { "tcp://127.0.0.1:1883" };
